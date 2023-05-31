@@ -1,28 +1,27 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
-import {
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  NextPage,
-} from "next";
 
-import { ApiResponse } from "@/api/api";
+async function getData() {
+  const res = await fetch(
+    "https://6ca13a92-b734-44be-a3de-9e047346479a.mock.pstmn.io/applicant"
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
 
-type HomeProps = {
-  data: ApiResponse | null;
-};
+  return res.json();
+}
 
-const Home: NextPage<HomeProps> = ({ data }) => {
-  console.log("check data--------->", data); 
-  
+const Home = async () => {
+  const data = await getData();
+
   return (
     <main className={styles.main}>
       <div className={styles.jumbotron}></div>
       <div className={styles.card}>
         <Image
-          src={
-            "https://collectiq-evox-images-qa.s3.us-west-2.amazonaws.com/Honda/Accord/2014/side-1683708138.png"
-          }
+          src={data?.vehicle_info.image_url}
+          className={styles.carImage}
           width={384}
           height={288}
           alt="car"
@@ -33,41 +32,42 @@ const Home: NextPage<HomeProps> = ({ data }) => {
           DriveTime.
         </p>
         <div className={styles.category}>
-          <div className={styles.childCard}>
-            <h1>Identity</h1>
-            <span>New</span>
-          </div>
-          <div className={styles.childCard}>
-            <h1>Identity</h1>
-            <span>New</span>
-          </div>
+          {data.categories &&
+            typeof data.categories === "object" &&
+            Object.entries(data.categories).map(([categoryName, category]) => (
+              <div className={styles.childCard} key={categoryName}>
+                <h1>{categoryName}</h1>
+                <span>{category.status}</span>
+              </div>
+            ))}
         </div>
+        <p className={styles.privacyPolicy}>
+          By proceeding, I agree to DriveTime’s{" "}
+          <a
+            href={data?.branding?.privacy_link}
+            target="_blank"
+            className={styles.focusedText}
+          >
+            GLBA Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            href={data?.branding?.terms_of_service_link}
+            target="_blank"
+            className={styles.focusedText}
+          >
+            Terms of Use.
+          </a>
+        </p>
+      </div>
+      <div className={styles.divider}></div>
+      <div className={styles.contactDetails}>
+        <p>Questions? Call DriveTime</p>
+        <p>{data?.branding?.phone}</p>
+        <p>Your progress will be saved automatically.</p>
       </div>
     </main>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-  try {
-    const res = await fetch(
-      "https://6ca13a92-b734-44be-a3de-9e047346479a.mock.pstmn.io/applicant"
-    );
-    const data: ApiResponse | null = await res.json();
-    console.log("data.....",data);
-
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching API data:", error);
-    return {
-      props: {
-        data: null, // or provide a default value/error handling
-      },
-    };
-  }
 };
 
 export default Home;

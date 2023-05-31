@@ -1,6 +1,5 @@
 .main {
   background-color: #ececec;
-  min-height: 100vh;
 }
 .jumbotron {
   background-image: url("/carbackground.svg");
@@ -14,21 +13,32 @@
   background-color: #d9d9d9; /* Change the color and opacity as needed */
   background-blend-mode: luminosity; /* Adjust the blend mode as desired */
   min-height: 300px;
+  @media (max-width: 767px) {
+    display: none;
+  }
 }
 
 .card {
   background: #ececec;
   border-radius: 4px;
   padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
+  position: relative;
+  width: 100vw;
   z-index: 2;
-  box-shadow: 0px 6px 6px -3px rgba(0, 0, 0, 0.2),
-    0px 10px 14px 1px rgba(0, 0, 0, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12);
   text-align: center;
+  margin-bottom: 20px;
+  .carImage {
+    @media (max-width: 767px) {
+      width: 350px;
+    }
+  }
+  .focusedText {
+    color: #008350;
+    text-decoration: none;
+  }
+  .privacyPolicy {
+    padding: 20px;
+  }
   h1 {
     font-family: "Roboto";
     font-style: normal;
@@ -54,7 +64,7 @@
       background: #ffffff;
       border-radius: 12px;
       height: 80px;
-      margin-top: -20px;
+      margin-top: -10px;
       filter: drop-shadow(0px -8px 16px rgba(0, 0, 0, 0.15));
       display: flex;
       align-items: baseline;
@@ -63,16 +73,47 @@
       span {
         background: #1976d2;
         border-radius: 64px;
-        color: #FFFFFF;
+        color: #ffffff;
         padding: 3.5px 6.5px;
         font-size: 12px;
       }
-      &:hover{
-        transform: translateY(-1.5rem);
-      }
+      // &:hover {
+      //   transform: translateY(-1.5rem);
+      // }
     }
     &:not(:first-child) {
       margin-top: 40px;
     }
+  }
+  @media (min-width: 767px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -15%);
+    width: 80%;
+    box-shadow: 0px 6px 6px -3px rgba(0, 0, 0, 0.2),
+    0px 10px 14px 1px rgba(0, 0, 0, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12);
+ 
+  }
+}
+
+.divider {
+  height: 10px;
+  background-color: #e3e3e3;
+}
+.contactDetails {
+  p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #686868;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  p:nth-child(2){
+    color: #008350;
   }
 }
