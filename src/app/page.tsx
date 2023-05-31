@@ -1,95 +1,73 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from "next/image";
+import styles from "./page.module.scss";
+import {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from "next";
 
-export default function Home() {
+import { ApiResponse } from "@/api/api";
+
+type HomeProps = {
+  data: ApiResponse | null;
+};
+
+const Home: NextPage<HomeProps> = ({ data }) => {
+  console.log("check data--------->", data); 
+  
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
+      <div className={styles.jumbotron}></div>
+      <div className={styles.card}>
+        <Image
+          src={
+            "https://collectiq-evox-images-qa.s3.us-west-2.amazonaws.com/Honda/Accord/2014/side-1683708138.png"
+          }
+          width={384}
+          height={288}
+          alt="car"
+        />
+        <h1>Help DriveTime finalize your application.</h1>
         <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+          Tap or click the cards below to verify the information needed by
+          DriveTime.
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        <div className={styles.category}>
+          <div className={styles.childCard}>
+            <h1>Identity</h1>
+            <span>New</span>
+          </div>
+          <div className={styles.childCard}>
+            <h1>Identity</h1>
+            <span>New</span>
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
-}
+  );
+};
+
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+  try {
+    const res = await fetch(
+      "https://6ca13a92-b734-44be-a3de-9e047346479a.mock.pstmn.io/applicant"
+    );
+    const data: ApiResponse | null = await res.json();
+    console.log("data.....",data);
+
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching API data:", error);
+    return {
+      props: {
+        data: null, // or provide a default value/error handling
+      },
+    };
+  }
+};
+
+export default Home;
