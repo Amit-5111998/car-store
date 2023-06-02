@@ -1,0 +1,117 @@
+.categoryPage {
+  padding: 30px;
+  text-align: center;
+  height: 100vh;
+}
+.breadCrum {
+  display: flex;
+  align-items: center;
+  p {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    color: #686868;
+  }
+  img{
+    cursor: pointer;
+  }
+}
+.categoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  h1 {
+    margin-top: 10px;
+  }
+  .documentContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 21px 16px;
+    gap: 10px;
+    width: 100%;
+    height: 72px;
+    left: 24px;
+    top: 292px;
+    background: #e6e6e6;
+    border: 2px dashed #d0d0d0;
+    border-radius: 12px;
+    .uploadIcons {
+      display: flex;
+      gap: 20px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 150%;
+      display: flex;
+      align-items: center;
+      color: #161616;
+    }
+  }
+  .horizontalLine {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    &::before,
+    &::after {
+      content: "";
+      flex-grow: 1;
+      height: 1px;
+      background-color: #000;
+    }
+  }
+
+  .horizontalLineText {
+    margin: 0 10px;
+    font-weight: bold;
+    color: #000;
+  }
+}
+
+.card {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  span {
+    background: #1976d2;
+    border-radius: 60px;
+    color: #ffffff;
+    padding: 2px;
+    width: 38px;
+    height: 20px;
+    font-size: 12px;
+    text-align: center;
+  }
+  p {
+    margin-top: 30px;
+    text-align: start;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 157%;
+    letter-spacing: 0.1px;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    align-items: center;
+    span {
+      background: #008350;
+      border-radius: 50%;
+      height: 12px;
+      width: 12px;
+      margin-right: 3px;
+    }
+  }
+}

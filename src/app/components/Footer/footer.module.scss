@@ -1,0 +1,39 @@
+.footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.footerMain {
+  background-color: black;
+  text-align: center;
+  padding: 30px;
+  p{
+    color: #C2C2C2;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.divider {
+  height: 10px;
+  background-color: #e3e3e3;
+}
+.contactDetails {
+  p {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #686868;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  p:nth-child(2){
+    color: #008350;
+  }
+}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
+import Link from "next/link";
 
 async function getData() {
   const res = await fetch(
@@ -34,11 +35,13 @@ const Home = async () => {
         <div className={styles.category}>
           {data.categories &&
             typeof data.categories === "object" &&
-            Object.entries(data.categories).map(([categoryName, category]) => (
+            Object.entries(data.categories).map(([categoryName, category] : any) => (
+              <Link href={`/${categoryName}`}>
               <div className={styles.childCard} key={categoryName}>
                 <h1>{categoryName}</h1>
-                <span>{category.status}</span>
+                <span>{category?.status}</span>
               </div>
+              </Link>
             ))}
         </div>
         <p className={styles.privacyPolicy}>
@@ -59,12 +62,6 @@ const Home = async () => {
             Terms of Use.
           </a>
         </p>
-      </div>
-      <div className={styles.divider}></div>
-      <div className={styles.contactDetails}>
-        <p>Questions? Call DriveTime</p>
-        <p>{data?.branding?.phone}</p>
-        <p>Your progress will be saved automatically.</p>
       </div>
     </main>
   );

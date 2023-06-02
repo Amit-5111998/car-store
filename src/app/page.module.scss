@@ -1,6 +1,3 @@
-.main {
-  background-color: #ececec;
-}
 .jumbotron {
   background-image: url("/carbackground.svg");
   background-size: cover;
@@ -40,8 +37,6 @@
     padding: 20px;
   }
   h1 {
-    font-family: "Roboto";
-    font-style: normal;
     font-weight: 600;
     font-size: 22px;
     line-height: 125%;
@@ -50,8 +45,6 @@
     color: #222222;
   }
   p {
-    font-family: "Roboto";
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 135%;
@@ -63,13 +56,16 @@
     .childCard {
       background: #ffffff;
       border-radius: 12px;
-      height: 80px;
-      margin-top: -10px;
+      height: 95px;
+      margin-top: -20px;
+      cursor: pointer;
       filter: drop-shadow(0px -8px 16px rgba(0, 0, 0, 0.15));
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      padding: 20px;
+      padding: 30px;
+      transition: 0.2s;
+      transform: translateY(0rem);
       span {
         background: #1976d2;
         border-radius: 64px;
@@ -77,9 +73,12 @@
         padding: 3.5px 6.5px;
         font-size: 12px;
       }
-      // &:hover {
-      //   transform: translateY(-1.5rem);
-      // }
+      &:hover {
+        transform: translateY(-1.5rem);
+      }
+      &:hover ~ .childCard {
+        transform: translateY(0.5rem);
+      }
     }
     &:not(:first-child) {
       margin-top: 40px;
@@ -96,24 +95,3 @@
   }
 }
 
-.divider {
-  height: 10px;
-  background-color: #e3e3e3;
-}
-.contactDetails {
-  p {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 21px;
-    text-align: center;
-    letter-spacing: 0.15px;
-    color: #686868;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  p:nth-child(2){
-    color: #008350;
-  }
-}
