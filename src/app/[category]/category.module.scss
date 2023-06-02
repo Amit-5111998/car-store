@@ -1,7 +1,7 @@
 .categoryPage {
   padding: 30px;
   text-align: center;
-  height: 100vh;
+//   height: 100vh;
 }
 .breadCrum {
   display: flex;
@@ -25,9 +25,10 @@
 
 .form {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   h1 {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   .documentContainer {
     margin-top: 20px;
