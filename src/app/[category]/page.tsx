@@ -16,12 +16,15 @@ function Category({ params }: any) {
   const [documents, setDocuments] = useState<DocumentsState>({});
   // let category;
 
+
+  //to set category documents type
   useEffect(() => {
     if (Object.keys(zustData).length > 0) {
       let { categories } = zustData;
       setDocuments(categories[params.category]);
     }
   }, [zustData]);
+
   return (
     <section className={styles.categoryPage}>
       <div className={styles.categoryHeader}>
